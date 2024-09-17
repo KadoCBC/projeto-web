@@ -1,2 +1,18 @@
 # projeto-web
-Projeto de site para disciplina de programação Web
+
+
+## Membros
+
+- **Arthur**
+- **Davi**
+- **Lukas Resgalla**
+- **Lukas**
+- **Ricardo Cipriani Borrajo Costa**
+
+## Descrição do Projeto
+
+Escrever Aqui
+
+## Estrutura do Projeto
+
+
