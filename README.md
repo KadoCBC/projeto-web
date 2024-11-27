@@ -1,4 +1,4 @@
-# projeto-web - Site de Noticias
+# Site de Noticias
 
 
 ## Membros
