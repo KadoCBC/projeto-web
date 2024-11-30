@@ -4,12 +4,14 @@
   "description": "Projeto de Web - Site de noticias",
   "main": "index.js",
   "scripts": {
-    "start": "node index"
+    "start": "node index",
+    "dev": "nodemon index" 
   },
   "keywords": [],
   "author": "Ricardo, Davi, Lukas, Lukas e Arthur",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.21.1"
+    "express": "^4.21.1",
+    "nodemon": "^3.1.7"
   }
 }
