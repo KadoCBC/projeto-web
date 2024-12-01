@@ -21,6 +21,7 @@ nav {
     width: 200px;
     display: flex;
     align-items: center;
+    margin-left: 1rem;
   }
   i.bi-search {
     position: absolute;
