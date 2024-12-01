@@ -37,18 +37,7 @@ const findAll = async (req, res) => {
 };
 
 const findById = async (req, res) => {
-    const id = req.params.id;
-
-    if(!mongoose.Types.ObjectId.isValid(id)){
-        return res.status(400).send({ message: "ID inválido"})
-    }
-
-    const user = await userService.findByIdService(id);
-
-    if (!user) {
-        return res.status(400).send({ message: "Id de usuario não encontrado" });
-    }
-
+    const user = req.user;
     res.send(user);
 };
 
@@ -58,17 +47,8 @@ const update = async (req, res) => {
     if (!name && !username && !email && !password && !avatar && !background) {
         res.status(400).send({ message: "Preecha pelo menos um campo para atualizar"});
     }
-    const id = req.params.id;
 
-    if(!mongoose.Types.ObjectId.isValid(id)){
-        return res.status(400).send({ message: "ID inválido"});
-    }
-
-    const user = await userService.findByIdService(id);
-
-    if (!user) {
-        return res.status(400).send({ message: "Id de usuario não encontrado" });
-    }
+    const {id, user} = req;
     
     await userService.updateService(
         id,
