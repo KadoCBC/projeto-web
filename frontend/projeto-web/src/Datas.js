@@ -1,5 +1,3 @@
-import { text } from "express";
-
 export const news = {
     title: 'Notícia 1',
     text: 'Texto da notícia 1',
