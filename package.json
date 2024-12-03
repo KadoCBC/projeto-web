@@ -11,8 +11,14 @@
   "author": "Ricardo, Davi, Lukas, Lukas e Arthur",
   "license": "ISC",
   "dependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "components": "^0.1.0",
     "express": "^4.21.1",
     "mongoose": "^8.8.3",
-    "nodemon": "^3.1.7"
+    "nodemon": "^3.1.7",
+    "styled": "^1.0.0"
+  },
+  "devDependencies": {
+    "vite": "^6.0.1"
   }
 }

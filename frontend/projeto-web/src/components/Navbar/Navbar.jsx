@@ -1,21 +1,21 @@
-import logo from '../../images/LogoBN.png'
-import "./Navbar.css"
+import logo from '../../images/LogoBN.png';
+import { Button, Nav, ImgLogo, InputSpace } from "./NavbarStyled";
 
-    export function Navbar(){
+export function Navbar() {
 
 
     return (
         <>
-            <nav>
-                <div className="input-search-space">
+            <Nav>
+                <InputSpace className="input-search-space">
                     <i class='bi bi-search'></i>
-                    <input type="text" placeholder='Digite para pesquisar'/>
-                </div>
+                    <input type="text" placeholder='Digite para pesquisar' />
+                </InputSpace>
 
-                <img src={logo} alt='Logo noticias'/>
+                <ImgLogo src={logo} alt='Logo noticias' />
 
-                <button>Entrar</button>
-            </nav>
+                <Button>Entrar</Button>
+            </Nav>
         </>
     )
 }
