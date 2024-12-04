@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 
+//Protocolo para criação de um usuario
 const UserSchema = new mongoose.Schema({
     name: {
         type: String,

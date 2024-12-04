@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Projeto de Web - Site de noticias",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "node index",
     "dev": "nodemon index"
@@ -11,6 +12,8 @@
   "author": "Ricardo, Davi, Lukas, Lukas e Arthur",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.7",
     "express": "^4.21.1",
     "mongoose": "^8.8.3",
     "nodemon": "^3.1.7"
