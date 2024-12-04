@@ -1,5 +1,5 @@
 import userService from '../services/user.service.js';
-const mongoose = require("mongoose")
+import mongoose from "mongoose";
 
 const create = async (req, res) => {
     try {
