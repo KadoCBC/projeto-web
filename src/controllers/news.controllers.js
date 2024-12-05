@@ -1,5 +1,5 @@
 import { createService, findAllService } from "../services/news.service.js";
-import {ObjectId} from "mongoose";
+
 
 const create = async (req, res) => {
     try{
@@ -8,17 +8,17 @@ const create = async (req, res) => {
         if(!title || !text || !banner){
             res.status(400).send({
                 message: "Preencha todos os campos"
-            })
+            });
         };
 
         await createService({
             title,
             text,
             banner,
-            user: ObjectId("ObjectIdFake1"),
+            user: { _id: "675054fc7949e2b9e0b76ddf" },
         });
 
-        res.send(201)
+        res.sendStatus(201)
     } catch (err){
         res.status(500).send({ message: err.message });
     }

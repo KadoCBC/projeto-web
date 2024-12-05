@@ -6,7 +6,7 @@ const router = Router();
 import {create, findAll} from "../controllers/news.controllers.js";
 
 router.post('/', create)
-router.get('/', getAll)
+router.get('/', findAll)
 
 
 export default router;
