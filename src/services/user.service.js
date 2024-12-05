@@ -1,3 +1,5 @@
+//const { update } = require("../controllers/user.controller");
+
 import User from "../models/User.js"
 
 const createService = (body) => User.create(body);
