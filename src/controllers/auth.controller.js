@@ -21,7 +21,9 @@ const login = async (req, res) => {
             return res.status(404).send({message: "Usuário ou senha invalidos"})
         }
 
-        res.send("Login ok");
+        const token = generateToken(user.id)
+
+        res.send({token});
     } catch (err){
         res.status(500).send(err.message);
     }
