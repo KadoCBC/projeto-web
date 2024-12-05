@@ -14,7 +14,9 @@ export default function Home() {
         setNews(response.data.results); //muda o estado para renderização
     }
 
-    //findAllPosts();
+    useEffect(() => {
+        findAllPosts(); //nao entrar no loop
+    }, [])
     //console.log(news)
     return (
         <>
@@ -24,12 +26,13 @@ export default function Home() {
             </HomeHeader>
             <HomeBody>
                 {news.map((item, index) => (
-                     <Card
-                     key={item.id}
-                     title={item.title}
-                     banner={item.banner}
-                     likes={item.likes.length}
-                     comments={item.comments.length}/>
+                    <Card key={index} news={item} ></Card>
+                     //<Card
+                     //key={item.id}
+                     //title={item.title}
+                     //banner={item.banner}
+                     //likes={item.likes.length}
+                     //comments={item.comments.length}/>
                 ))}
             </HomeBody>
         </>
