@@ -1,5 +1,4 @@
 import userService from '../services/user.service.js';
-const mongoose = require("mongoose")
 
 const create = async (req, res) => {
     try {
@@ -27,7 +26,7 @@ const create = async (req, res) => {
             },
         });
     } catch (err) {
-        res.status(500).send({ message: 'Falha ao conectar ao banco de dados' });
+        res.status(500).send({ message: err.message });
     }
 };
 
@@ -40,7 +39,7 @@ const findAll = async (req, res) => {
         }
         res.send(users);
     } catch (err) {
-        res.status(500).send({ message: 'Falha ao conectar ao banco de dados' });
+        res.status(500).send({ message: err.message });
     }
 };
 
@@ -49,7 +48,7 @@ const findById = async (req, res) => {
         const user = req.user;
         res.send(user);
     } catch (err){
-        res.status(500).send({ message: 'Falha ao conectar ao banco de dados' });
+        res.status(500).send({ message: err.message });
     }
 };
 
@@ -75,7 +74,7 @@ const update = async (req, res) => {
 
         res.send({ message: "Usuario foi atualizado com Sucesso!" })
     } catch (err){
-        res.status(500).send({ message: 'Falha ao conectar ao banco de dados' });
+        res.status(500).send({ message: err.message });
     }
 };
 
