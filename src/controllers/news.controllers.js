@@ -15,7 +15,7 @@ const create = async (req, res) => {
             title,
             text,
             banner,
-            user: { _id: "675054fc7949e2b9e0b76ddf" },
+            user: req.userId,
         });
 
         res.sendStatus(201)

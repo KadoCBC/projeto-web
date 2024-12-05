@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { loginService } from '../services/auth.service.js';
+import { loginService, generateToken } from '../services/auth.service.js';
 
 
 //Verifica se o email e senha estão no banco de dados para login
