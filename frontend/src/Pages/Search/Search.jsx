@@ -1,7 +1,9 @@
-import { use } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { Card } from "../../components/Cards/Card";
 import { ContainerResults, SearchPosts, TextResults } from "./SearchStyled";
+
+
 
 export default function Search() {
     const {title} = useParams();
