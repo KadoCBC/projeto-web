@@ -6,7 +6,8 @@ import {
     findByIdService,
     searchByTitleService,
     byUserService,
-    updateService
+    updateService,
+    deleteNewsService
 } from "../services/news.service.js";
 
 
@@ -216,4 +217,24 @@ export const update = async (req, res) => {
     }catch(err){
         res.status(500).send({ message: err.message});
     }
-}
+};
+
+export const deleteNews = async (req, res) => {
+    try{
+        const { id } = req.params;
+
+        const news = await findByIdService(id);
+
+        if(news.user._id != req.userId){
+            return res.status(400).send(
+                {message: 'Você não pode atualizar essa postagem'}
+            );
+        }
+
+        await deleteNewsService(id);
+        
+        return res.send({message: "Deletado com sucesso!"})
+    } catch(err){
+        res.status(500).send({ message: err.message});
+    }
+};
