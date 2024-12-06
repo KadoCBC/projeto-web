@@ -1,4 +1,4 @@
-import { createService, findAllService, countNews } from "../services/news.service.js";
+import { createService, findAllService, countNews, topNewsService, findByIdService } from "../services/news.service.js";
 
 
 const create = async (req, res) => {
@@ -26,7 +26,8 @@ const create = async (req, res) => {
 };
 
 const findAll = async (req, res) => {
-    //Querys para paginação
+    try{
+            //Querys para paginação
     let {limit, offset} = req.query;
     
     limit = Number(limit);
@@ -74,6 +75,62 @@ const findAll = async (req, res) => {
             userAvatar: item.user.avatar,
         }))
     });
+    }
+    catch (err){
+        res.status(500).send({ message: err.message });
+        }
+    };
+
+const topNews = async (req, res) => {
+    try{
+        const news = await  topNewsService();
+    
+        if(!news) {
+            return res.status(400).send({message: "Não tem noticia registrada"})
+        }
+    
+        res.send({
+            news: {
+                id: news._id,
+                title: news.title,
+                text: news.text,
+                banner: news.banner,
+                likes: news.likes,
+                comments: news.comments,
+                name: news.user.name,
+                username: news.user.username,
+                userAvatar: news.user.avatar,
+            }
+        });
+    }
+    catch (err){
+        res.status(500).send({ message: err.message });
+        }
+    };
+
+const findById = async (req, res) => {
+    try{
+        const { id } = req.params;
+
+        const news = await findByIdService(id)
+
+        return res.send({
+            news: {
+                id: news._id,
+                title: news.title,
+                text: news.text,
+                banner: news.banner,
+                likes: news.likes,
+                comments: news.comments,
+                name: news.user.name,
+                username: news.user.username,
+                userAvatar: news.user.avatar,
+            }
+        });
+    }
+    catch(err){
+        res.status(500).send({ message: err.message});
+    }
 };
 
-export { create, findAll};
+export { create, findAll, topNews, findById};
