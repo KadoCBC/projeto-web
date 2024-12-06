@@ -7,7 +7,9 @@ import {
     searchByTitleService,
     byUserService,
     updateService,
-    deleteNewsService
+    deleteNewsService,
+    likeNewsService,
+    deleteLikeNewsService
 } from "../services/news.service.js";
 
 
@@ -78,7 +80,7 @@ const findAll = async (req, res) => {
             title: item.title,
             text: item.text,
             banner: item.banner,
-            likes: item.likes,
+            likes: item.like,
             comments: item.comments,
             name: item.user.name,
             username: item.user.username,
@@ -105,7 +107,7 @@ const topNews = async (req, res) => {
                 title: news.title,
                 text: news.text,
                 banner: news.banner,
-                likes: news.likes,
+                likes: news.like,
                 comments: news.comments,
                 name: news.user.name,
                 username: news.user.username,
@@ -130,7 +132,7 @@ const findById = async (req, res) => {
                 title: news.title,
                 text: news.text,
                 banner: news.banner,
-                likes: news.likes,
+                likes: news.like,
                 comments: news.comments,
                 name: news.user.name,
                 username: news.user.username,
@@ -161,7 +163,7 @@ export const searchByTitle = async(req, res) => {
                 title: item.title,
                 text: item.text,
                 banner: item.banner,
-                likes: item.likes,
+                likes: item.like,
                 comments: item.comments,
                 name: item.user.name,
                 username: item.user.username,
@@ -185,7 +187,7 @@ export const byUser = async (req, res) => {
                 title: item.title,
                 text: item.text,
                 banner: item.banner,
-                likes: item.likes,
+                likes: item.like,
                 comments: item.comments,
                 name: item.user.name,
                 username: item.user.username,
@@ -235,6 +237,25 @@ export const deleteNews = async (req, res) => {
         
         return res.send({message: "Deletado com sucesso!"})
     } catch(err){
+        res.status(500).send({ message: err.message});
+    }
+};
+
+export const likeNews = async (req, res) => {
+    try{
+        const { id } = req.params;
+        const userId = req.userId;
+
+        const newsLiked = await likeNewsService(id, userId);
+        
+        if (!newsLiked){
+            await deleteLikeNewsService(id, userId);
+            return res.status(200).send({message: 'like removido com sucesso!'})
+        }
+
+        res.status(200).send({message: "like adicionado com sucesso!"});
+
+    }catch(err){
         res.status(500).send({ message: err.message});
     }
 };

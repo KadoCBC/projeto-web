@@ -32,3 +32,15 @@ export const updateService = (id, title, text, banner) =>
 
 export const deleteNewsService = (id) =>
     News.findByIdAndDelete({ _id: id });
+
+export const likeNewsService = (idNews, userId) =>
+    News.findOneAndUpdate(
+        { _id: idNews, "like.userId": { $nin: [userId] } }, // $nin verifica se a noticia ja tem like do usuario
+        {$push: {like: {userId, created: new Date()}} }
+    );
+
+export const deleteLikeNewsService = (idNews, userId) =>
+    News.findOneAndUpdate(
+        { _id: idNews }, // $nin verifica se a noticia ja tem like do usuario
+        {$pull: {like: {userId} } }
+    );
