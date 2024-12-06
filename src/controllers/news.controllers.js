@@ -5,7 +5,8 @@ import {
     topNewsService,
     findByIdService,
     searchByTitleService,
-    byUserService
+    byUserService,
+    updateService
 } from "../services/news.service.js";
 
 
@@ -195,3 +196,24 @@ export const byUser = async (req, res) => {
         res.status(500).send({ message: err.message});
     }
 };
+
+export const update = async (req, res) => {
+    try{
+        const { id } = req.params;
+        const {title, text, banner} = req.news;
+
+        const news = await findByIdService(id);
+
+        if(news.user._id != req.userId){
+            return res.status(400).send(
+                {message: 'Você não pode atualizar essa postagem'}
+            );
+        }
+
+    await updateService(id, title, text, banner);
+
+    return res.send({ message: "Postagem atualizada com sucesso!"})
+    }catch(err){
+        res.status(500).send({ message: err.message});
+    }
+}

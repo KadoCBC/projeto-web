@@ -34,3 +34,22 @@ export const validUser = async (req, res, next) => {
     }
 };
 
+//Valida se a noticia tem os 3 campos
+export const validNews = async (req, res, next) => {
+    try{
+        const {title, text, banner} = req.body;
+
+        if(!title & !text & !banner){
+            res.status(400).send({
+                message: "Preencha pelo menos um campo"
+            });
+        };
+        
+        req.news = {title, text, banner}
+
+        next();
+
+    } catch (err) {
+        res.status(500).send({ message: err });
+    }
+};
