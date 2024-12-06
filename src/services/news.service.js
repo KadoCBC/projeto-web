@@ -20,8 +20,9 @@ export {
 };
 
 //Função que busca pelo título ou parte dele. Não é case sensitive
-export const searchByTitleService = () => News.find({
-    title: { $regex: '${title || ""}', $options: "i" }
-})
-    .sort({ _id: -1 })
-    .populate("user");
+export const searchByTitleService = (title) => News.find({ 
+    title: { $regex: `${title || ""}`, $options: "i" }
+}).sort({ _id: -1 }).populate("user");
+
+export const byUserService = (id) => 
+    News.find({user: id}).sort({ _id: -1 }).populate("user");
