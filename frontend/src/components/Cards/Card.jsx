@@ -1,29 +1,30 @@
 import { TextLimit } from "../TextLimit/TextLimit";
-import { CardContainer, CardBody, CardFooter } from "./CardStyle";
+import { CardContainer, CardBody, CardFooter, CardHeader } from "./CardStyle";
 
 //trocar news para props
 export function Card({ news }) {
-    console.log(news)
     return (
         <CardContainer>
             <CardBody>
                 <div>
+                    <CardHeader>
                     <h2>{news.title}</h2>
-                    <img src={news.banner} alt="Imagem"></img>
-                </div>
-                <TextLimit text={news.text} limit={150}/>
-            </CardBody>
+                    <TextLimit text={news.text} limit={150} />
+                    </CardHeader>
 
-            <CardFooter>
-                <div>
-                    <i className="bi bi-hand-thumbs-up" alt="Imagem" />
-                    <span>{news.likes}</span>
+                    <CardFooter>
+                        <section>
+                            <i className="bi bi-hand-thumbs-up" alt="Imagem" />
+                            <span>{news.likes}</span> {/*adicionar '?.length' -->*/}
+                        </section>
+                        <section>
+                            <i className="bi bi-chat"></i>
+                            <span>{news.comments}</span> {/*adicionar '?.length' -->*/}
+                        </section>
+                    </CardFooter>
                 </div>
-                <div>
-                    <i className="bi bi-chat"></i>
-                    <span>{news.comments}</span>
-                </div>
-            </CardFooter>
+                <img src={news.banner} alt="Imagem"></img>
+            </CardBody>
         </CardContainer>
     );
 }
