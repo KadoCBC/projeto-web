@@ -25,9 +25,14 @@ export function Authentication() {
     function inHandleSubmit(data) {
         console.log(data); }
 
-    function upHandleSubmit(data) {
-        console.log(data); }
-
+    async function upHandleSubmit(data) {
+        try {
+            const response = await signup(data);
+            console.log(response);
+        } catch (error) {
+            console.error(error);
+        }
+    }
      return (
         <AuthContainer>
             <Section type="signin"> {/* tipo de autenticacao */}
