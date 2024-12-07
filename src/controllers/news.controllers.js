@@ -9,7 +9,9 @@ import {
     updateService,
     deleteNewsService,
     likeNewsService,
-    deleteLikeNewsService
+    deleteLikeNewsService,
+    addCommentService,
+    deleteCommentService
 } from "../services/news.service.js";
 
 
@@ -259,3 +261,50 @@ export const likeNews = async (req, res) => {
         res.status(500).send({ message: err.message});
     }
 };
+
+export const addComment = async (req, res) => {
+    try{
+        const {id} = req.params;
+        const userId = req.userId;
+        const { comment } = req.body;
+
+        if(!comment){
+            res.status(400).send({message: "Escreva um texto para comentar!"});
+        }
+
+        await addCommentService(id, comment, userId);
+
+        res.send({
+            message: "Comentario adicionado",
+        });
+    } catch(err){
+        res.status(500).send({message: err.message});
+    }
+    
+}
+
+export const deleteComment = async(req, res) => {
+    try{
+        const {idNews, idComment} = req.params;
+        const userId = req.userId;
+        const commentDeleted = await deleteCommentService(idNews, idComment, userId);
+
+        const commentFinder = commentDeleted.comments.find(
+            comment => comment.idComment === idComment
+        )
+
+        if(!commentFinder){
+            return res.status(404).send({ message: "Comentário não encontrado"})
+        }
+
+        if(commentFinder.userId !== userId){
+            return res.status(400).send({message: "Não foi possível deletar esse comentário"});
+        }
+
+        res.send({
+            message: "Comentario apagado",
+        });
+    } catch(err){
+        res.status(500).send({message: err.message});
+    }
+}
