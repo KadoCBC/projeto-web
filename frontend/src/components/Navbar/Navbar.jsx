@@ -1,9 +1,10 @@
 import { Outlet, useNavigate, Link } from 'react-router-dom';
 import logo from '../../images/LogoBN.png';
-import { Button, Nav, ImgLogo, InputSpace, ErrorSpan } from "./NavbarStyled";
+import { Nav, ImgLogo, InputSpace, ErrorSpan } from "./NavbarStyled";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Button } from "../Button/Button";
 
 const searchSchema = z.object({
     title: z
@@ -47,7 +48,9 @@ export function Navbar() {
                     <ImgLogo src={logo} alt='Logo noticias' />
                 </Link>
 
-                <Button onClick={goAuth}>Entrar</Button> {/* botao de login, funcao goAuth nova */}
+                <Link to="auth">
+                <Button  type="button" text="Entrar" >Entrar</Button> {/* on click nao tava mais funcionando depois de criar o Component button, ai usei Link  e nao usei mais a goAuth*/}
+                </Link>
             </Nav>
             {errors.title && <ErrorSpan>{errors.title.message}</ErrorSpan>}  {/* se nao for nulo mostra a mensagem */}
             <Outlet />
