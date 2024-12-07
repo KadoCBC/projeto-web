@@ -14,6 +14,20 @@ export function signup(data) {
     return response;
 } 
 
+export function signin(data) {
+    const response = axios.post(`${baseURL}/user/login`, data);
+    return response;
+}
+
+export function userLogged() {
+    const response = axios.get(`${baseURL}/user/findById`, {
+        headers: {
+            Authorization: `Bearer ${Cookies.get("token")}`
+        }
+    });
+    return response;
+}
+
 function generateUserName(name){
     const withoutSpace = name.replace(/\s/g, "").tolowerCase();
     const randomNumber = Math.floor(Math.random() * 1000);

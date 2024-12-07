@@ -1,10 +1,15 @@
 import { Outlet, useNavigate, Link } from 'react-router-dom';
 import logo from '../../images/LogoBN.png';
 import { Nav, ImgLogo, InputSpace, ErrorSpan } from "./NavbarStyled";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "../Button/Button";
 import { searchSchema } from "../../schemas/searchSchema";
+import { userLogged } from '../../services/userService';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import Cookies from 'js-cookie';
+
 
 
 
@@ -13,6 +18,8 @@ export function Navbar() {
         resolver: zodResolver(searchSchema)
     });
     const navigate = useNavigate();
+    const [user, setUser] = useState({});
+
     function onSearch(data) {
         const { title } = data;
         console.log(data)
@@ -20,8 +27,20 @@ export function Navbar() {
         reset();
     }
 
-    function goAuth() {
-        navigate("/auth");
+    async function findUserLogged() {
+        try{
+            const response = await userLogged();
+            setUser(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+
+    function signout() {}
+
+    useEffect(() => {
+        if(Cookies.get("token")) findUserLogged();
+        }, []);
+
     }
 
     return (
@@ -42,9 +61,17 @@ export function Navbar() {
                     <ImgLogo src={logo} alt='Logo noticias' />
                 </Link>
 
-                <Link to="auth">
+                {!user ? (
+                    <UserLoggedSpace>
+                        <h2>{user.name}</h2>  
+                        <i className="bi bi-box-arrow-right" onClick={signout}></i>
+                    </UserLoggedSpace>
+                ) : (    //se tiver user logado mostra o user nao o botao, so da pra testar isso com o backend funcionando
+                    <Link to="auth">
                 <Button  type="button" text="Entrar" >Entrar</Button> {/* on click nao tava mais funcionando depois de criar o Component button, ai usei Link  e nao usei mais a goAuth*/}
                 </Link>
+                )}
+  
             </Nav>
             {errors.title && <ErrorSpan>{errors.title.message}</ErrorSpan>}  {/* se nao for nulo mostra a mensagem */}
             <Outlet />

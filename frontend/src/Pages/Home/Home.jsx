@@ -4,6 +4,8 @@ import { news, topnews } from "../../Datas.js"; //apagar quando tiver integraÃ§Ã
 import { getAllPosts, getTopPost } from "../../services/postServices.js"; //aqui pega dados do bd
 import { HomeBody, HomeHeader } from "./HomeStyled.jsx";
 import { useState } from "react"; //atualiza estado inicial
+import { useEffect } from "react"; //executa apos renderizar
+import Cookies from "js-cookie";
 
 export default function Home() {
 
@@ -18,10 +20,10 @@ export default function Home() {
         setTopPost(topPostResponse.data.post);
     }
 
-    //useEffect(() => {
-        //findPost(); //nao entrar no loop
-    //}, [])
-    //console.log(news)
+    useEffect(() => {
+        findPost(); //nao entrar no loop   
+     }, []);
+    
     return (
         <>
             <HomeHeader>
