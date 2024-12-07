@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signinSchema } from "../../schemas/signinSchema";
 import { ErrorSpan } from "../../components/Navbar/NavbarStyled";
+import { signupSchema } from "../../schemas/signupSchema";
 
 
 export function Authentication() {
@@ -13,7 +14,7 @@ export function Authentication() {
         register: registerSignup, 
         handleSubmit: handleSubmitSignup, 
         formState: { errors: errorsSignup }
-     } = useForm();
+     } = useForm({resolver: zodResolver(signupSchema)});
 
     const { 
         register: registerSignin, 
@@ -58,24 +59,28 @@ export function Authentication() {
                     name="name"
                     register={registerSignup}
                     />
+                    {errorsSignup.name && <ErrorSpan> {errorsSignup.name.message} </ErrorSpan> }
                     <Input 
                     type="email"
                     placeholder="Email"
                     name="email"
                     register={registerSignup}
                     />
+                    {errorsSignup.email && <ErrorSpan> {errorsSignup.email.message} </ErrorSpan> }
                     <Input
                     type="password"
                     placeholder="Senha"
                     name="password"
                     register={registerSignup}
                     />
+                    {errorsSignup.password && <ErrorSpan> {errorsSignup.password.message} </ErrorSpan> }
                     <Input
                     type="password"
                     placeholder="Confirmar senha"
-                    name="password"
+                    name="confirmPassword"
                     register={registerSignup}
-                    />  
+                    />
+                    {errorsSignup.confirmPassword && <ErrorSpan> {errorsSignup.confirmPassword.message} </ErrorSpan> }
                     <Button type="submit" text="Cadastrar"></Button>
                 </form>
             </Section>                
