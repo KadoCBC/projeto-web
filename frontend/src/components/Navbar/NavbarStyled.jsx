@@ -61,11 +61,12 @@ export const Nav = styled.nav`
 `
 
 export const ErrorSpan = styled.span`
-    color: red;
-    font-size: 1.1rem;
+    color: #f55b5b;
+    font-size: 1rem;
     background-color: #f5f5f5;
     padding: 1rem;
     display: flex;
     justify-content: center;
     font-weight: bold;
+    border-radius: 7px;
 `

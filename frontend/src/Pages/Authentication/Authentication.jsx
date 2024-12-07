@@ -3,7 +3,8 @@ import { Input } from "../../components/Input/Input";
 import { AuthContainer, Section } from "./AuthenticationStyled";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-
+import { signinSchema } from "../../schemas/signinSchema";
+import { ErrorSpan } from "../../components/Navbar/NavbarStyled";
 
 
 export function Authentication() {
@@ -11,16 +12,14 @@ export function Authentication() {
     const { 
         register: registerSignup, 
         handleSubmit: handleSubmitSignup, 
-        reset: resetSignup, 
         formState: { errors: errorsSignup }
      } = useForm();
 
     const { 
         register: registerSignin, 
         handleSubmit: handleSubmitSignin, 
-        reset: resetSignin, 
         formState: { errors: errorsSignin }
-     } = useForm();
+     } = useForm({resolver: zodResolver(signinSchema)});
 
     function inHandleSubmit(data) {
         console.log(data); }
@@ -39,12 +38,14 @@ export function Authentication() {
                     name="email"
                     register={registerSignin}
                     />
+                    {errorsSignin.email && <ErrorSpan> {errorsSignin.email.message} </ErrorSpan> }
                     <Input
                     type="password"
                     placeholder="Senha"
                     name="password"
                     register={registerSignin}
                     />
+                    {errorsSignin.password && <ErrorSpan> {errorsSignin.password.message} </ErrorSpan> }
                     <Button type="submit" text="Entrar"></Button>
                 </form>
             </Section>
