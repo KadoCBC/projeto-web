@@ -7,6 +7,7 @@ import { GlobalStyled } from './GlobalStyled.jsx'
 import Home from './Pages/Home/Home.jsx'
 import Search from './Pages/Search/Search.jsx'
 import ErrorPage from './Pages/ErrorPage/ErrorPage.jsx'
+import { Authentication } from './Pages/Authentication/Authentication.jsx'
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "/auth",
+    element: <Authentication/>,
+  }
 ]);
 
 createRoot(document.getElementById('root')).render(
