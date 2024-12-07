@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { Card } from "../../components/Cards/Card";
 import { ContainerResults, SearchPosts, TextResults } from "./SearchStyled";
+import { searchPosts } from "../../services/postServices";
 
 
 
@@ -31,8 +32,8 @@ export default function Search() {
                     {posts.length
                         ? `Resultados encontrados para: ${posts.length} ${
                             posts.length > 1 ? "resultados" : "resultado"
-                        } para:`
-                    : "Nenhum resultado encontrado para:" }                     
+                        } para: ${title}`
+                    : `Nenhum resultado encontrado para: ${title}`}                     
                 </span>
                 </TextResults>           
             <SearchPosts>

@@ -1,7 +1,7 @@
 import { Navbar } from "../../components/Navbar/Navbar"
 import { Card } from "../../components/Cards/Card"
 import { news, topnews } from "../../Datas.js"; //apagar quando tiver integração com BD
-import { getAllPosts, getTopPost } from "../../../services/postServices.js"; //aqui pega dados do bd
+import { getAllPosts, getTopPost } from "../../services/postServices.js"; //aqui pega dados do bd
 import { HomeBody, HomeHeader } from "./HomeStyled.jsx";
 import { useState } from "react"; //atualiza estado inicial
 
