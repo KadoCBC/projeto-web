@@ -8,6 +8,8 @@ import Home from './Pages/Home/Home.jsx'
 import Search from './Pages/Search/Search.jsx'
 import ErrorPage from './Pages/ErrorPage/ErrorPage.jsx'
 import { Authentication } from './Pages/Authentication/Authentication.jsx'
+import UserProvider from './Context/userContext.jsx'
+import { Profile } from './Pages/Profile/Profile.jsx'
 
 const router = createBrowserRouter([
   {
@@ -38,6 +40,8 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <GlobalStyled />
-    <RouterProvider router={router}/>
+    <UserProvider>
+      <RouterProvider router={router}/>
+    </UserProvider>
   </StrictMode>,
 )
