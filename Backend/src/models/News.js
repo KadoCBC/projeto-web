@@ -7,7 +7,7 @@ const NewsSchema = new mongoose.Schema({
         type: String,
         require: true,
     },
-    titltete: {
+    title: {
         type: String,
         require: true,
     },
