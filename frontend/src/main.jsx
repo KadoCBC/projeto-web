@@ -10,6 +10,7 @@ import ErrorPage from './Pages/ErrorPage/ErrorPage.jsx'
 import { Authentication } from './Pages/Authentication/Authentication.jsx'
 import UserProvider from './Context/userContext.jsx'
 import { Profile } from './Pages/Profile/Profile.jsx'
+import {ManageNews} from './Pages/ManageNews/ManageNews.jsx'
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <Profile />
+      },
+      {
+        path: "/manage-news/:action",
+        element: <ManageNews />,
       }
     ],
   },

@@ -1,58 +1,75 @@
-import { useContext, useState } from 'react';
-import { UserContext } from '../../Context/userContext';
-import { ProfileActions, ProfileAvatar, ProfileBackground, ProfileContainer, ProfileHeader, ProfileIconAdd, ProfileIconEdit, ProfileUser } from './ProfileStyled';
-import { getAllPostsByUser } from '../../services/postServices';
-import useeffect from 'react';
-import { Card } from '../../components/Cards/Card'
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../../Context/userContext";
+import {
+  ProfileActions,
+  ProfileAvatar,
+  ProfileBackground,
+  ProfileContainer,
+  ProfileHeader,
+  ProfileIconAdd,
+  ProfileIconEdit,
+  ProfilePosts,
+  ProfileUser,
+} from "./ProfileStyled";
+import { getAllPostsByUser } from "../../services/postServices";
+import { Card } from "../../components/Cards/Card";
+import { Link } from "react-router-dom";
 
 export function Profile() {
-    const {user} = useContext(UserContext);
-    const {posts, setPosts} = useState([]);
+  const { user } = useContext(UserContext);
+  const [posts, setPosts] = useState([]);
 
-    async function findAllPostsByUseer() {
-        const postsResponse = await getAllPostsByUser();
-        setPosts(postsResponse.data.postsByUser);
-    }
+  async function findAllPostsByUser() {
+    const postsResponse = await getAllPostsByUser();
+    setPosts(postsResponse.data.postsByUser);
+  }
 
-    useeffect(() => {
-        findAllPostsByUseer();
-    }, []); 
+  useEffect(() => {
+    findAllPostsByUser();
+  }, []);
 
-    return (
-        <ProfileContainer>
-            <ProfileHeader>
-                <ProfileIconEdit>
-                    <i className="bi bi-pencil-square"></i>
-                </ProfileIconEdit>
-                <ProfileBackground src={user.background} alt="" />
+  return (
+    <ProfileContainer>
+      <ProfileHeader>
+        <ProfileIconEdit>
+          <i className="bi bi-pencil-square"></i>
+        </ProfileIconEdit>
 
-                <ProfileUser>
-                    <ProfileAvatar src={user.avatar} alt="Foto do usuário" />
-                    <h2>{user.name}</h2>
-                    <h3>{user.username}</h3>
-                </ProfileUser>
-                <ProfileActions>
-                    <ProfileIconAdd>
-                        <i className="bi bi-circle"></i>
-                    </ProfileIconAdd>
-                </ProfileActions>
-            </ProfileHeader>
-            <ProfilePosts>
-            {posts.length === 0 && <h3>Você ainda não criou nenhuma noticia...</h3>}
+        <ProfileBackground src={user.background} alt="" />
 
-            {posts.map((item) => {
-                return (
-                    <Card
-                        key={item._id}
-                        title={item.title}
-                        description={item.description}
-                        image={item.image}
-                        category={item.category}
-                        date={item.date}
-                    />
-                );
-            })}
-            </ProfilePosts>
-        </ProfileContainer>
-    ); 
+        <ProfileUser>
+          <ProfileAvatar src={user.avatar} alt="Foto do usuário" />
+          <h2>{user.name}</h2>
+          <h3>@{user.username}</h3>
+        </ProfileUser>
+
+        <ProfileActions>
+          <Link to="/manage-news/add/news">
+            <ProfileIconAdd>
+              <i className="bi bi-plus-circle"></i>
+            </ProfileIconAdd>
+          </Link>
+        </ProfileActions>
+      </ProfileHeader>
+
+      <ProfilePosts>
+        {posts.length === 0 && <h3>Você ainda não criou nenhuma noticia...</h3>}
+
+        {posts.map((item) => {
+          return (
+            <Card
+              key={item.id}
+              id={item.id}
+              title={item.title}
+              text={item.text}
+              banner={item.banner}
+              likes={item.likes}
+              comments={item.comments}
+              actions={true}
+            />
+          );
+        })}
+      </ProfilePosts>
+    </ProfileContainer>
+  );
 }
