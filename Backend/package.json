@@ -2,7 +2,7 @@
   "name": "projeto-web",
   "version": "1.0.0",
   "description": "Projeto de Web - Site de noticias",
-  "main": "index.js",
+  "main": "server.js",
   "type": "module",
   "scripts": {
     "start": "node index",
