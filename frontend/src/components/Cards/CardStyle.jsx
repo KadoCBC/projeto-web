@@ -11,7 +11,6 @@ export const CardContainer = styled.section`
   border-radius: 0.3rem;
   background-color: #fff;
 `;
-
 export const CardBody = styled.article`
   display: flex;
   width: 100%;
@@ -34,26 +33,41 @@ export const CardBody = styled.article`
 `;
 
 export const CardHeader = styled.article`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    
-    h2 {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-size: ${(props) => (props.top ? "1.5rem" : ".9rem")};
+
+  h2 {
     margin-bottom: 1rem;
-    font-size: 1,5rem
-    }
+    font-size: ${(props) => (props.top ? "3rem" : "1.1rem")};
+    width: 100%;
+  }
+
+  span {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+
+  i {
+    cursor: pointer;
+    color: #0bade3;
+    font-size: 1.1rem;
+    text-decoration: none;
+    border: none;
+  }
 `;
 
 export const CardFooter = styled.article`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  section {
     display: flex;
     align-items: center;
-    gap: 1rem;
-
-    section {
-        display: flex;
-        align-items: center;
-        gap: 0.2rem;
+    gap: 0.2rem;
   }
 `;

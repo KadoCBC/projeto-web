@@ -1,30 +1,51 @@
+import { Link } from "react-router-dom";
 import { TextLimit } from "../TextLimit/TextLimit";
-import { CardContainer, CardBody, CardFooter, CardHeader } from "./CardStyle";
+import { CardBody, CardContainer, CardFooter, CardHeader } from "./CardStyle";
 
-//trocar news para props
-export function Card({ news }) {
-    return (
-        <CardContainer>
-            <CardBody>
-                <div>
-                    <CardHeader>
-                    <h2>{news.title}</h2>
-                    <TextLimit text={news.text} limit={150} />
-                    </CardHeader>
+export function Card({
+  top,
+  title,
+  text,
+  likes,
+  comments,
+  banner,
+  actions = false,
+  id,
+}) {
+  return (
+    <CardContainer>
+      <CardBody>
+        <div>
+          <CardHeader top={top}>
+            {actions && (
+              <span>
+                <Link to={`/manage-news/edit/${id}`}>
+                  <i className="bi bi-pencil-square"></i>
+                </Link>
+                <Link to={`/manage-news/delete/${id}`}>
+                  <i className="bi bi-trash3"></i>
+                </Link>
+              </span>
+            )}
+            <h2>{title}</h2>
+            <TextLimit text={text} limit={150} />
+          </CardHeader>
 
-                    <CardFooter>
-                        <section>
-                            <i className="bi bi-hand-thumbs-up" alt="Imagem" />
-                            <span>{news.likes}</span> {/*adicionar '?.length' -->*/}
-                        </section>
-                        <section>
-                            <i className="bi bi-chat"></i>
-                            <span>{news.comments}</span> {/*adicionar '?.length' -->*/}
-                        </section>
-                    </CardFooter>
-                </div>
-                <img src={news.banner} alt="Imagem"></img>
-            </CardBody>
-        </CardContainer>
-    );
+          <CardFooter>
+            <section>
+              <i className="bi bi-hand-thumbs-up"></i>
+              <span>{likes?.length}</span>
+            </section>
+
+            <section>
+              <i className="bi bi-chat"></i>
+              <span>{comments?.length}</span>
+            </section>
+          </CardFooter>
+        </div>
+
+        <img src={banner} alt="Imagem" />
+      </CardBody>
+    </CardContainer>
+  );
 }

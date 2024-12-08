@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../Context/userContext";
 import {
-  ProfileActions,
+ProfileActions,
   ProfileAvatar,
   ProfileBackground,
   ProfileContainer,
