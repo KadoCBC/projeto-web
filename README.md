@@ -1,4 +1,4 @@
-# projeto-web - Site de Noticias
+# projeto-web - NOTÍCIAS SIN
 
 
 ## Membros
@@ -17,6 +17,18 @@ O projeto incial será fazer um site de noticias usando a Stack MERN, contendo:
 - Área do usuário (perfil)
 - Ferramenta para administração do conteudo
 - Notificações e Atualizações
-- 
-## Estrutura do Projeto
+  
+## Tecnologias usadas:
+
+- MongoDB Atlas
+- Express
+- React
+- Node.js
+
+## Requisitos:
+
+- Instalar o Express. Comando npm install express
+
+
+
 
