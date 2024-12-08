@@ -19,7 +19,6 @@ export const ProfileHeader = styled.header`
         rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
     background-color: #fff;
     z-index: 0;
-    
 `;
 
 export const ProfileIconEdit = styled.i`
@@ -84,5 +83,22 @@ export const ProfileIconAdd = styled.i`
   :hover {
     color: #0a86af;
     font-size: 2.1rem;
+  }
+`;
+
+export const ProfilePosts = styled.main`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 15px;
+  margin: 1rem auto;
+  width: 80%;
+
+  h3 {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #023344;
+    margin-top: 1rem;
   }
 `;

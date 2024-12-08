@@ -1,8 +1,23 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { UserContext } from '../../Context/userContext';
+import { ProfileActions, ProfileAvatar, ProfileBackground, ProfileContainer, ProfileHeader, ProfileIconAdd, ProfileIconEdit, ProfileUser } from './ProfileStyled';
+import { getAllPostsByUser } from '../../services/postServices';
+import useeffect from 'react';
+import { Card } from '../../components/Cards/Card'
 
 export function Profile() {
     const {user} = useContext(UserContext);
+    const {posts, setPosts} = useState([]);
+
+    async function findAllPostsByUseer() {
+        const postsResponse = await getAllPostsByUser();
+        setPosts(postsResponse.data.postsByUser);
+    }
+
+    useeffect(() => {
+        findAllPostsByUseer();
+    }, []); 
+
     return (
         <ProfileContainer>
             <ProfileHeader>
@@ -22,6 +37,22 @@ export function Profile() {
                     </ProfileIconAdd>
                 </ProfileActions>
             </ProfileHeader>
+            <ProfilePosts>
+            {posts.length === 0 && <h3>Você ainda não criou nenhuma noticia...</h3>}
+
+            {posts.map((item) => {
+                return (
+                    <Card
+                        key={item._id}
+                        title={item.title}
+                        description={item.description}
+                        image={item.image}
+                        category={item.category}
+                        date={item.date}
+                    />
+                );
+            })}
+            </ProfilePosts>
         </ProfileContainer>
     ); 
 }
