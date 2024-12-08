@@ -48,7 +48,7 @@ export const deleteLikeNewsService = (idNews, userId) =>
 export const addCommentService = (idNews, comment, userId) => {
     let idComment = Math.floor(Date.now() * Math.random()).toString(36);
 
-    return News.findOneAndUpdate({id: idNews},
+    return News.findOneAndUpdate({_id: idNews},
         {$push: 
             {comments: {idComment, userId, comment,
                 createdAt: new Date()},
