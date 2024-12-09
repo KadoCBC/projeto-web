@@ -6,7 +6,7 @@ import {
   deleteNews,
   editNews,
   getNewsById,
-} from "../../services/postServices";
+} from "../../services/postsServices";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "../../components/Input/Input";

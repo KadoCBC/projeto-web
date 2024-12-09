@@ -1,25 +1,25 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const baseURL = "http://localhost:3001";
+const baseURL = "https://api-noticias-e7vr.onrender.com";
 
 export function getAllPosts() {
-  const response = axios.get(`${baseURL}/posts`);
+  const response = axios.get(`${baseURL}/news`);
   return response;
 }
 
 export function getTopPost() {
-  const response = axios.get(`${baseURL}/posts/top`);
+  const response = axios.get(`${baseURL}/news/top`);
   return response;
 }
 
 export function searchPosts(title) {
-  const response = axios.get(`${baseURL}/posts/search?title=${title}`);
+  const response = axios.get(`${baseURL}/news/search?title=${title}`);
   return response;
 }
 
 export function getAllPostsByUser() {
-  const response = axios.get(`${baseURL}/posts/byUserId`, {
+  const response = axios.get(`${baseURL}/news/byUser`, {
     headers: {
       Authorization: `Bearer ${Cookies.get("token")}`,
     },
@@ -28,7 +28,7 @@ export function getAllPostsByUser() {
 }
 
 export function createNews(body) {
-  const response = axios.post(`${baseURL}/posts/create`, body, {
+  const response = axios.post(`${baseURL}/news`, body, {
     headers: {
       Authorization: `Bearer ${Cookies.get("token")}`,
     },
@@ -37,7 +37,7 @@ export function createNews(body) {
 }
 
 export function getNewsById(id) {
-  const response = axios.get(`${baseURL}/posts/byIdPost/${id}`, {
+  const response = axios.get(`${baseURL}/news/${id}`, {
     headers: {
       Authorization: `Bearer ${Cookies.get("token")}`,
     },
@@ -46,7 +46,7 @@ export function getNewsById(id) {
 }
 
 export function editNews(body, id) {
-  const response = axios.patch(`${baseURL}/posts/update/${id}`, body, {
+  const response = axios.patch(`${baseURL}/news/${id}`, body, {
     headers: {
       Authorization: `Bearer ${Cookies.get("token")}`,
     },
@@ -55,7 +55,7 @@ export function editNews(body, id) {
 }
 
 export function deleteNews (id) {
-  const response = axios.delete(`${baseURL}/posts/delete/${id}`, {
+  const response = axios.delete(`${baseURL}/news/${id}`, {
     headers: {
       Authorization: `Bearer ${Cookies.get("token")}`,
     },

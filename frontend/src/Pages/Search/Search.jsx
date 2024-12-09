@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
-import { Card } from "../../components/Cards/Card";
+import { Card } from "../../components/Card/Card";
 import { ContainerResults, SearchPosts, TextResults } from "./SearchStyled";
-import { searchPosts } from "../../services/postServices";
+import { searchPosts } from "../../services/postsServices";
 
 
 

@@ -11,8 +11,8 @@ ProfileActions,
   ProfilePosts,
   ProfileUser,
 } from "./ProfileStyled";
-import { getAllPostsByUser } from "../../services/postServices";
-import { Card } from "../../components/Cards/Card";
+import { getAllPostsByUser } from "../../services/postsServices";
+import { Card } from "../../components/Card/Card";
 import { Link } from "react-router-dom";
 
 export function Profile() {
