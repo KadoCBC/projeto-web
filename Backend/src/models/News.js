@@ -5,15 +5,15 @@ import mongoose from "mongoose";
 const NewsSchema = new mongoose.Schema({
     title: {
         type: String,
-        require: true,
+        required: true,
     },
-    titltete: {
+    text: {
         type: String,
-        require: true,
+        required: true,
     },
     banner: {
         type: String,
-        require: true,
+        required: true,
     },
     createdAt:{
         type: Date,
@@ -22,15 +22,15 @@ const NewsSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
-        require: true,
+        required: true,
     },
     like: {
         type: Array,
-        require: true,
+        required: true,
     },
     comments: {
         type: Array,
-        require: true,
+        required: true,
     },
 });
 
