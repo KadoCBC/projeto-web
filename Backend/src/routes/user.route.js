@@ -5,6 +5,8 @@ import {validId, validUser} from "../middlewares/global.middlewares.js";
 const route = express.Router();
 
 route.post("/", userController.create);
+
+route.use(authMiddleware)
 route.get("/", userController.findAll);
 
 route.use(validId);
