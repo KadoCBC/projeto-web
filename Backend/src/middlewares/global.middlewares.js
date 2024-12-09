@@ -7,8 +7,10 @@ export const validId = (req, res, next) => {
   if (!req.params.id) {
     req.params.id = req.userId;
     idParam = req.params.id;
+    console.log('aq')
   } else {
     idParam = req.params.id;
+    console.log(idParam)
   }
 
   if (!mongoose.Types.ObjectId.isValid(idParam)) {
