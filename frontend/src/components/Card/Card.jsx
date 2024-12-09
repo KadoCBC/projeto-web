@@ -6,8 +6,6 @@ export function Card({
   top,
   title,
   text,
-  likes,
-  comments,
   banner,
   actions = false,
   id,
@@ -30,18 +28,6 @@ export function Card({
             <h2>{title}</h2>
             <TextLimit text={text} limit={150} />
           </CardHeader>
-
-          <CardFooter>
-            <section>
-              <i className="bi bi-hand-thumbs-up"></i>
-              <span>{likes?.length}</span>
-            </section>
-
-            <section>
-              <i className="bi bi-chat"></i>
-              <span>{comments?.length}</span>
-            </section>
-          </CardFooter>
         </div>
 
         <img src={banner} alt="Imagem" />

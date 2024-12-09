@@ -1,13 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../Context/userContext";
 import {
-ProfileActions,
+  ProfileActions,
   ProfileAvatar,
   ProfileBackground,
   ProfileContainer,
   ProfileHeader,
   ProfileIconAdd,
-  ProfileIconEdit,
   ProfilePosts,
   ProfileUser,
 } from "./ProfileStyled";
@@ -31,10 +30,6 @@ export function Profile() {
   return (
     <ProfileContainer>
       <ProfileHeader>
-        <ProfileIconEdit>
-          <i className="bi bi-pencil-square"></i>
-        </ProfileIconEdit>
-
         <ProfileBackground src={user.background} alt="" />
 
         <ProfileUser>
@@ -63,8 +58,6 @@ export function Profile() {
               title={item.title}
               text={item.text}
               banner={item.banner}
-              likes={item.likes}
-              comments={item.comments}
               actions={true}
             />
           );
