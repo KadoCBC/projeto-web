@@ -11,6 +11,12 @@ export const validId = (req, res, next) => {
     idParam = req.params.id;
   }
 
+  if (!mongoose.Types.ObjectId.isValid(idParam)) {
+    return res.status(400).send({ message: "Invalid id!" });
+  }
+  next();
+}
+
 //Valida o usuário pelo Id
 export const validUser = async (req, res, next) => {
     try{
