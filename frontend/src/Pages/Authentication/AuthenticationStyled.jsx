@@ -24,7 +24,7 @@ export const Section = styled.section`
   height: 400px;
   padding: 2rem;
   gap: 1rem;
-  background-color: ${(props) => (props.type === "signin" ? "gray" : "white")};
+  background-color: ${(props) => (props.type === "signin" ? "blue" : "white")};
   color: ${(props) => (props.type === "signup" ? "gray" : "white")};
   border-radius: 2rem;
 
