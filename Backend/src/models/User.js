@@ -19,7 +19,7 @@ const UserSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-        select: false,
+        select: true,
     },
     avatar: {
         type: String,
@@ -29,7 +29,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
     }
-})
+});
 
 //Criptografia de senha. Um hash é criado a partir da senha.
 UserSchema.pre("save", async function(next) {
