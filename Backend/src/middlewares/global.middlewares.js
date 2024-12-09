@@ -3,14 +3,13 @@ import mongoose from "mongoose";
 
 //Recebe um Id e valida ele
 export const validId = (req, res, next) => {
-    const id = req.params.id;
-
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(400).send({ message: "ID inválido" })
-    }
-
-    next();
-};
+  let idParam;
+  if (!req.params.id) {
+    req.params.id = req.userId;
+    idParam = req.params.id;
+  } else {
+    idParam = req.params.id;
+  }
 
 //Valida o usuário pelo Id
 export const validUser = async (req, res, next) => {
