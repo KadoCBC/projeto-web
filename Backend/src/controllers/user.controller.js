@@ -45,8 +45,11 @@ const findAll = async (req, res) => {
 
 const findById = async (req, res) => {
     try {
-        const user = req.user;
-        res.send(user);
+        const user = await userService.findByIdService(
+            req.params.id,
+            req.userId
+        );
+        return res.send(user);
     } catch (err){
         res.status(500).send({ message: err.message });
     }

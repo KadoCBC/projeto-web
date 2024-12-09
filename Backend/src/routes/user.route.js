@@ -6,7 +6,7 @@ const route = express.Router();
 
 route.post("/", userController.create);
 route.get("/", userController.findAll);
-route.get("/:id", validId, validUser, userController.findById)  //validId e validUser ocorrem antes da função userController.findById
+route.get("/:id?", validId, validUser, userController.findById)  //validId e validUser ocorrem antes da função userController.findById
 route.patch("/:id", validId, validUser, userController.update)  
 
 export default route;
