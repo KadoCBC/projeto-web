@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { InputSpace, TextareaSpace } from "./InputStyled";
 
 export function Input({
@@ -11,14 +11,19 @@ export function Input({
   disabled,
 }) {
   const [value, setValue] = useState(initialValue);
+
+  useEffect(() => {
+    setValue(initialValue);
+  }, [initialValue]);
+
   let inputProps = {
     type,
     placeholder,
     ...register(name),
+    value,
     onChange: (e) => setValue(e.target.value),
     disabled,
   };
-  if (value) inputProps.value = value;
 
   return (
     <>
