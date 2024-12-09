@@ -22,7 +22,7 @@ import { validNews } from "../middlewares/global.middlewares.js";
 
 router.post('/', authMiddleware, create);
 router.get('/', findAll);
-router.get('/top', authMiddleware, topNews);
+router.get('/top', topNews);
 router.get('/search', searchByTitle); //Busca a notícia pelo título
 router.get("/byUser", authMiddleware, byUser);
 router.get('/:id', authMiddleware, findById);
