@@ -7,7 +7,7 @@ const route = express.Router();
 route.post("/", userController.create);
 route.get("/", userController.findAll);
 
-userRouter.use(validId);
+router.use(validId);
 route.get("/findById/:id?", validId, userController.findById)  //validId e validUser ocorrem antes da função userController.findById
 route.patch("/:id", userController.update)  
 
