@@ -18,5 +18,4 @@ O projeto incial será fazer um site de noticias usando a Stack MERN, contendo:
 - Ferramenta para administração do conteudo
 - Notificações e Atualizações  
 
-## Estrutura do Projeto
 
